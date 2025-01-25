@@ -38,8 +38,14 @@ export interface RegisterResponse {
 }
 
 export interface Category {
-  id: string;
+  _id: string;
   title: string;
+}
+
+export interface Salesman {
+  _id: string;
+  displayName: string;
+  phoneNumber: string;
 }
 
 export interface ItemMutation {
@@ -48,4 +54,14 @@ export interface ItemMutation {
   price: number;
   image: File | null;
   category: string;
+}
+
+export interface Item {
+  _id: string;
+  title: string;
+  description: string;
+  image: File | null;
+  price: number;
+  category: string;
+  user: Salesman;
 }

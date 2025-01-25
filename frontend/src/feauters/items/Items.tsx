@@ -1,15 +1,16 @@
 import {NavLink, useParams} from 'react-router-dom';
 import { Grid, List, ListItemText, Typography, Paper, ListItemButton } from '@mui/material';
 import { CATEGORIES } from '../../constants';
+import {useAppSelector} from '../../app/hooks';
+import {selectItems} from './itemsSlice';
 
 const Items = () => {
+  const items = useAppSelector(selectItems);
 
   const {categoryId} = useParams();
-
   let pageTitle = "All Items";
-
   if (categoryId !== undefined) {
-    const currentCategory = CATEGORIES.find(category => category.id === categoryId);
+    const currentCategory = CATEGORIES.find(category => category._id === categoryId);
     if (currentCategory) {
       pageTitle = currentCategory.title;
     } else {
@@ -41,9 +42,9 @@ const Items = () => {
             </ListItemButton>
             {CATEGORIES.map((category) => (
               <ListItemButton
-                key={category.id}
+                key={category._id}
                 component={NavLink}
-                to={`/category/${category.id}`}
+                to={`/category/${category._id}`}
                 sx={{
                   borderRadius: 1,
                   padding: '8px 16px',

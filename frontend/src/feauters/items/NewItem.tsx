@@ -129,7 +129,7 @@ const NewItem = () => {
             >
               <MenuItem value="">Select Category</MenuItem>
               {CATEGORIES.map((category) => (
-                <MenuItem key={category.id} value={category.id}>
+                <MenuItem key={category._id} value={category._id}>
                   {category.title}
                 </MenuItem>
               ))}

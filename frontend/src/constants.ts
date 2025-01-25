@@ -1,7 +1,7 @@
 import {Category} from './types';
 
 export const CATEGORIES: Category[] = [
-  {title: "Computers", id: "computers"},
-  {title: "Cars", id: "cars"},
-  {title: "Other", id: "other"},
+  {title: "Computers", _id: "computers"},
+  {title: "Cars", _id: "cars"},
+  {title: "Other", _id: "other"},
 ];

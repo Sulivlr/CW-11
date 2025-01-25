@@ -1,17 +1,21 @@
 import {Item} from '../../types';
 import {createSlice} from '@reduxjs/toolkit';
-import {createItem, fetchItems} from './itemsThunks';
+import {createItem, fetchItems, fetchOneItem} from './itemsThunks';
 
 export interface ItemsState {
   items: Item[];
   itemsFetching: boolean;
   isCreating: boolean;
+  item: Item | null;
+  oneFetching: boolean;
 }
 
 const initialState: ItemsState = {
   items: [],
   itemsFetching: false,
   isCreating: false,
+  item: null,
+  oneFetching: false,
 }
 
 export const itemsSlice = createSlice({
@@ -33,11 +37,22 @@ export const itemsSlice = createSlice({
     }).addCase(createItem.rejected, (state) => {
       state.isCreating = false;
     });
+    builder.addCase(fetchOneItem.pending, (state) => {
+      state.item = null;
+      state.oneFetching = true;
+    }).addCase(fetchOneItem.fulfilled, (state, {payload: item}) => {
+      state.item = item;
+      state.oneFetching = false
+    }).addCase(fetchOneItem.rejected, (state) => {
+      state.oneFetching = false;
+    })
   },
   selectors: {
     selectItems: (state) => state.items,
     selectItemsFetching: (state) => state.itemsFetching,
     selectItemCreating: (state) => state.isCreating,
+    selectOneItem: (state) => state.item,
+    selectOneItemFetching: (state) => state.oneFetching,
   }
 });
 
@@ -46,4 +61,6 @@ export const {
   selectItems,
   selectItemsFetching,
   selectItemCreating,
+  selectOneItem,
+  selectOneItemFetching,
 } = itemsSlice.selectors;

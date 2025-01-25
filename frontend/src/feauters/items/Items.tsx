@@ -10,6 +10,7 @@ import {fetchItems} from './itemsThunks';
 const Items = () => {
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectItems);
+
   useEffect(() => {
     dispatch(fetchItems());
   }, [dispatch]);

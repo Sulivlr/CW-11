@@ -1,17 +1,23 @@
 import React from 'react';
 import { Item } from '../../../types';
-import { Card, CardActions, CardContent, CardHeader, Grid, IconButton, Typography } from '@mui/material';
+import { Card, CardActions, CardContent, CardHeader, Grid, IconButton, Typography, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import imageNotFound from '../../../assets/images/imagenotfound.jpg';
 
 interface Props {
   items: Item;
 }
 
 const ProductItem: React.FC<Props> = ({ items }) => {
+  let cardImage = imageNotFound;
+
+  if (items.image) {
+    cardImage = `http://localhost:8000/${items.image}`;
+  }
+
   return (
     <Grid item xs={12} sm={6} md={6} lg={4}>
-
       <Card
         sx={{
           minWidth: '250px',
@@ -49,6 +55,19 @@ const ProductItem: React.FC<Props> = ({ items }) => {
             padding: '16px',
           }}
         >
+          {/* Show image */}
+          <Box sx={{ width: '100%', height: 'auto', mb: 2 }}>
+            <img
+              src={cardImage}
+              alt={items.title}
+              style={{
+                width: '100%',
+                height: 'auto',
+                objectFit: 'cover',
+                borderRadius: '8px',
+              }}
+            />
+          </Box>
           <Typography
             variant="body1"
             sx={{

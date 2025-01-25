@@ -36,6 +36,15 @@ const UserSchema = new Schema<
     type: String,
     required: true,
   },
+  displayName: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   token: {
     type: String,
     required: true,

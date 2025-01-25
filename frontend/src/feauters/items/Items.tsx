@@ -1,11 +1,18 @@
 import {NavLink, useParams} from 'react-router-dom';
 import { Grid, List, ListItemText, Typography, Paper, ListItemButton } from '@mui/material';
 import { CATEGORIES } from '../../constants';
-import {useAppSelector} from '../../app/hooks';
+import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {selectItems} from './itemsSlice';
+import ProductItem from './components/ProductItem';
+import {useEffect} from 'react';
+import {fetchItems} from './itemsThunks';
 
 const Items = () => {
+  const dispatch = useAppDispatch();
   const items = useAppSelector(selectItems);
+  useEffect(() => {
+    dispatch(fetchItems());
+  }, [dispatch]);
 
   const {categoryId} = useParams();
   let pageTitle = "All Items";
@@ -67,6 +74,14 @@ const Items = () => {
         <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
           {pageTitle}
         </Typography>
+        <Grid item container spacing={1}>
+          {items.map((item) => (
+            <ProductItem
+              key={item._id}
+              items={item}
+            />
+          ))}
+        </Grid>
       </Grid>
     </Grid>
   );

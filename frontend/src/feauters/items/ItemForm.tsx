@@ -13,12 +13,18 @@ import {
 import FileInput from '../../UI/FileInput/FileInput';
 import {CATEGORIES} from '../../constants';
 import {ItemMutation} from '../../types';
+import AddIcon from '@mui/icons-material/Add';
 
-const NewItem = () => {
+interface Props {
+  onSubmit: (item: ItemMutation) => void;
+  isLoading: boolean;
+}
+
+const ItemForm: React.FC<Props> = ({onSubmit, isLoading}) => {
   const [state, setState] = useState<ItemMutation>({
     title: '',
     description: '',
-    price: 0,
+    price: '',
     image: null,
     category: ''
   });
@@ -31,6 +37,11 @@ const NewItem = () => {
     }));
   };
 
+  const submitFormHandler = (event: React.FormEvent) => {
+    event.preventDefault();
+    onSubmit({...state});
+  };
+
   const fileInputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {name, files} = event.target;
     const value = files && files[0] ? files[0] : null;
@@ -40,12 +51,10 @@ const NewItem = () => {
     }));
   };
 
-  const onSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-  };
+
 
   return (
-    <form autoComplete="off" onSubmit={onSubmit}>
+    <form autoComplete="off" onSubmit={submitFormHandler}>
       <Grid container spacing={3} sx={{mx: 'auto', width: '60%', mt: 5, mb: 5}}>
         <Grid item xs={12}>
           <Typography
@@ -140,6 +149,9 @@ const NewItem = () => {
         <Grid item xs={12} sx={{textAlign: 'center'}}>
           <Button
             type="submit"
+            loading={isLoading}
+            loadingPosition="start"
+            startIcon={<AddIcon />}
             variant="contained"
             color="primary"
             sx={{
@@ -148,7 +160,7 @@ const NewItem = () => {
               textTransform: 'none',
             }}
           >
-            Create Item
+            <span>Create Item</span>
           </Button>
         </Grid>
       </Grid>
@@ -156,4 +168,4 @@ const NewItem = () => {
   );
 };
 
-export default NewItem;
+export default ItemForm;

@@ -74,7 +74,7 @@ const Items = () => {
         <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
           {pageTitle}
         </Typography>
-        <Grid item container spacing={1}>
+        <Grid item container spacing={2}>
           {items.map((item) => (
             <ProductItem
               key={item._id}

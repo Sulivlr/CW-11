@@ -1,7 +1,10 @@
 export interface User {
   _id: string;
   username: string;
+  password: string;
   token: string;
+  displayName: string;
+  phoneNumber: string;
 }
 
 export interface RegisterMutation {
@@ -42,16 +45,10 @@ export interface Category {
   title: string;
 }
 
-export interface Salesman {
-  _id: string;
-  displayName: string;
-  phoneNumber: string;
-}
-
 export interface ItemMutation {
   title: string;
   description: string;
-  price: number;
+  price: string;
   image: File | null;
   category: string;
 }
@@ -61,7 +58,7 @@ export interface Item {
   title: string;
   description: string;
   image: File | null;
-  price: number;
+  price: string;
   category: string;
-  user: Salesman;
+  user: User;
 }

@@ -35,13 +35,13 @@ const run = async () => {
 
   const [computers, cars, other] = await Category.create(
     {
-      title: 'MacBook'
+      title: 'Cars'
     },
     {
-      title: 'Audi and Porsche',
+      title: 'Computers',
     },
     {
-      title: 'Iphone'
+      title: 'Other'
     }
   );
 

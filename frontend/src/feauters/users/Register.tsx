@@ -18,6 +18,8 @@ const Register = () => {
   const [state, setState] = useState<RegisterMutation>({
     username: '',
     password: '',
+    displayName: '',
+    phoneNumber: '',
   });
 
   const getFieldError = (fieldName: string) => {
@@ -74,6 +76,30 @@ const Register = () => {
               onChange={inputChangeHandler}
               error={Boolean(getFieldError('password'))}
               helperText={getFieldError('password')}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              required
+              label="Display-name"
+              name="displayname"
+              autoComplete="display-name"
+              value={state.displayName}
+              onChange={inputChangeHandler}
+              error={Boolean(getFieldError('displayName'))}
+              helperText={getFieldError('displayName')}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              required
+              label="Phone-number"
+              name="phoneNumber"
+              autoComplete="phone-number"
+              value={state.phoneNumber}
+              onChange={inputChangeHandler}
+              error={Boolean(getFieldError('phoneNumber'))}
+              helperText={getFieldError('phoneNumber')}
             />
           </Grid>
         </Grid>

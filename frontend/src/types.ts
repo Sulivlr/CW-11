@@ -7,6 +7,8 @@ export interface User {
 export interface RegisterMutation {
   username: string;
   password: string;
+  displayName: string;
+  phoneNumber: string;
 }
 
 export interface LoginMutation {
@@ -33,4 +35,17 @@ export interface GlobalError {
 export interface RegisterResponse {
   user: User;
   message: string;
+}
+
+export interface Category {
+  id: string;
+  title: string;
+}
+
+export interface ItemMutation {
+  title: string;
+  description: string;
+  price: number;
+  image: File | null;
+  category: string;
 }

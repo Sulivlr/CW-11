@@ -3,6 +3,8 @@ import AppToolBar from './UI/AppBar/AppToolBar';
 import {Container, Typography} from '@mui/material';
 import Register from './feauters/users/Register';
 import Login from './feauters/users/Login';
+import NewItem from './feauters/items/NewItem';
+import Items from './feauters/items/Items';
 
 const App = () => {
   return (
@@ -14,6 +16,9 @@ const App = () => {
         <Routes>
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/" element={<Items/>} />
+          <Route path="/category/:categoryId" element={<Items/>} />
+          <Route path="/new-item" element={<NewItem/>} />
           <Route path="*" element={<Typography variant="h1">Page Doesn't Exist</Typography>}/>
         </Routes>
       </Container>

@@ -1,16 +1,19 @@
-import {AppBar, Grid2, styled, Toolbar, Typography} from '@mui/material';
-import {Link} from 'react-router-dom';
-import {MusicNote} from '@mui/icons-material';
-import {selectUser} from '../../feauters/users/UsersSlice';
-import {useAppSelector} from '../../app/hooks';
+import { AppBar, Box, styled, Toolbar, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { selectUser } from '../../feauters/users/UsersSlice';
+import { useAppSelector } from '../../app/hooks';
 import AnonymousMenu from './AnonymousMenu';
 import UserMenu from './UserMenu';
 
 const StyledLink = styled(Link)({
   textDecoration: 'none',
   color: '#FFFFFF',
+  fontWeight: 600,
+  fontSize: '1.5rem',
   '&:hover': {
-    color: '#BDBDBD',
+    textDecoration: 'underline',
+    textUnderlineOffset: '4px',
+    color: '#B0BEC5',
   },
 });
 
@@ -22,29 +25,34 @@ const AppToolBar = () => {
       position="sticky"
       sx={{
         mb: 2,
-        backgroundColor: '#000000',
+        backgroundColor: '#121212',
         boxShadow: 'none',
-        borderBottom: '2px solid #1E1E1E',
+        borderBottom: '1px solid #2C2C2C',
       }}
     >
-      <Toolbar sx={{justifyContent: 'space-between', padding: '0 16px'}}>
-        <Grid2 container alignItems="center">
-          <Grid2>
-            <MusicNote fontSize="large" sx={{color: '#FFFFFF', mr: 1}}/>
-            <Typography variant="h5" sx={{color: '#FFFFFF', fontWeight: 700}}>
-              <StyledLink to="/">Something</StyledLink>
-            </Typography>
-          </Grid2>
-        </Grid2>
-        <Grid2 container justifyContent="flex-end" alignItems="center" sx={{gap: 2}}>
-          {user ? (
-            <Grid2>
-              <UserMenu/>
-            </Grid2>
-          ) : (
-            <AnonymousMenu/>
-          )}
-        </Grid2>
+      <Toolbar
+        sx={{
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '0 16px',
+        }}
+      >
+        {/* Left Section: Title */}
+        <Box>
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: 700,
+              fontSize: '1.5rem',
+              color: '#FFFFFF',
+            }}
+          >
+            <StyledLink to="/">Flea Market</StyledLink>
+          </Typography>
+        </Box>
+        <Box>
+          {user ? <UserMenu /> : <AnonymousMenu />}
+        </Box>
       </Toolbar>
     </AppBar>
   );

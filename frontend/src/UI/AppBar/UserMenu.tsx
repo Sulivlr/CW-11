@@ -3,7 +3,7 @@ import {Button, Grid2, Menu, MenuItem} from '@mui/material';
 import {AccountCircle} from '@mui/icons-material';
 import {useAppDispatch} from '../../app/hooks';
 import {logout} from '../../feauters/users/UsersThunk';
-import {NavLink, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {unsetUser} from '../../feauters/users/UsersSlice';
 
 
@@ -22,6 +22,11 @@ const UserMenu = () => {
     navigate('/');
   };
 
+  const navigateToCreateForm = () => {
+    navigate('/new-item');
+    setAnchorEl(null);
+  };
+
   const handleClose = () => {
     setAnchorEl(null);
   }
@@ -31,10 +36,8 @@ const UserMenu = () => {
         <AccountCircle />
       </Button>
       <Menu open={isOpen} anchorEl={anchorEl} onClose={handleClose} keepMounted>
-        <MenuItem color="inherit" component={NavLink} to="/trackhistory" onClick={handleClose}>
-          Track History
-        </MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        <MenuItem onClick={navigateToCreateForm}>Create New Item</MenuItem>
       </Menu>
     </Grid2>
   );
